@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  #get "login"
+  root "static#home"
+  get "signup", to: "parents#new"
+  post "signup", to: "parents#create"
 
   resources :appointments
   resources :babysitters
