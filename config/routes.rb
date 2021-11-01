@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  #get "login"
+
   resources :appointments
   resources :babysitters
   resources :children
