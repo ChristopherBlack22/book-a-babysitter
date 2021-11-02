@@ -2,6 +2,11 @@ class ParentsController < ApplicationController
 
     def new
         @parent = Parent.new
+        @parent.children.build
+        @parent.children.build
+        @parent.children.build
+        @parent.children.build
+        @parent.children.build
     end 
 
     def create
