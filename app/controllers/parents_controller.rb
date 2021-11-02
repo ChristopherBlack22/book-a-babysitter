@@ -2,7 +2,7 @@ class ParentsController < ApplicationController
 
     def new
         @parent = Parent.new
-        @parent.children.build
+        @parent.children.build#(name: "Child 1")
         @parent.children.build
         @parent.children.build
         @parent.children.build
@@ -15,6 +15,6 @@ class ParentsController < ApplicationController
 
     private
     def parent_params
-        params.require(:parent).permit(:username, :email, :password)
+        params.require(:parent).permit(:first_name, :last_name, :email, :password, children_attributes: [:name, :age])
     end 
 end
