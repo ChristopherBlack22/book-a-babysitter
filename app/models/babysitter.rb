@@ -1,4 +1,4 @@
 class Babysitter < ApplicationRecord
-    has_many :appointments
-    has_many :children, through: :appointments
+    has_many :bookings
+    has_many :parents, through: :bookings
 end
