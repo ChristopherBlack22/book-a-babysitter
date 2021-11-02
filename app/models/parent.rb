@@ -8,6 +8,9 @@ class Parent < ApplicationRecord
     validates :first_name, :last_name, :email, :password, presence: true
     validates :email, uniqueness: true#, message: "A Profile already exists for this email address. Please Log In."
 
+    def full_name
+        "#{first_name} #{last_name}"
+    end 
 
     private
     def nameless_child?(attributes)
