@@ -1,0 +1,40 @@
+<h1>Create a new Parent Profile</h1>
+<%= form_for @parent do |f| %>
+    Please add your details...
+    <br><br>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+    <br><br>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <br><br>
+    And add the details of at least one child in your care...
+    <br><br>
+    <%= f.fields_for :children do |child| %>
+        <%= child.label :name %>
+        <%= child.text_field :name %>
+        <%= child.label :age %>
+        <%= child.number_field :age, min: 0 %>
+        <br><br>
+    <% end %>
+    <br>
+    <%= f.submit "Create Profile" %>
+<% end %>
+
+<% if @parent.errors.any? %>
+    <h2>
+        <%= pluralize(@parent.errors.count, "error") %>
+        stopped this from being saved:
+    </h2>
+    <ul>
+        <% @parent.errors.full_messages.each do |message| %>
+            <li>
+                <%= message %>
+            </li>
+        <% end %>
+    </ul>
+<% end %>

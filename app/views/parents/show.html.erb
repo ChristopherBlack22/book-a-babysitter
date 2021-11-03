@@ -1,0 +1,17 @@
+<h1>Parent Profile</h1>
+<h2>Hello <%= current_user.full_name %></h2>
+
+<p>Create a new <%= link_to "Booking", new_parent_booking_path %>.</p>
+
+
+<h3>Here are your Babysitter bookings</h3>
+<% current_user.bookings.each do |booking| %>
+    <%= booking.start %> - <%= booking.end %> with <%= booking.babysitter %>
+<% end %>
+
+
+<h2>Your family...</h2>
+<% current_user.children.each do |child| %>
+    <%= child.name %>: <%= child.age %>
+<% end %>
+<p>ADD ABILITIY TO UPDATE AND ADD CHILDREN HERE</p>
