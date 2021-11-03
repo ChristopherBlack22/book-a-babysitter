@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2021_11_01_012322) do
   create_table "bookings", force: :cascade do |t|
     t.integer "parent_id"
     t.integer "babysitter_id"
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

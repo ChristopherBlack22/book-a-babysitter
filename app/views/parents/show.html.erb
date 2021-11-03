@@ -1,12 +1,12 @@
 <h1>Parent Profile</h1>
 <h2>Hello <%= current_user.full_name %></h2>
 
-<p>Create a new <%= link_to "Booking", new_parent_booking_path %>.</p>
+<p>Create a new <%= link_to "Booking", new_parent_booking_path(current_user) %>.</p>
 
 
 <h3>Here are your Babysitter bookings</h3>
 <% current_user.bookings.each do |booking| %>
-    <%= booking.start %> - <%= booking.end %> with <%= booking.babysitter %>
+    <%= booking.start_time %> - <%= booking.end_time %> with <%= booking.babysitter %>
 <% end %>
 
 

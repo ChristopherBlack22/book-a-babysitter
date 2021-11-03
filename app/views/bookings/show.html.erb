@@ -1,0 +1,9 @@
+Bookings show page
+<br>
+<%= @booking.start_time %><br>
+<%= @booking.end_time %><br>
+<%= @booking.parent.full_name %><br>
+<%= @booking.babysitter.name %><br>
+<% @booking.children.each do |child| %>
+    <%= child.name %><br>
+<% end %>
