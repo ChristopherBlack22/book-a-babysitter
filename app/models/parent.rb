@@ -4,7 +4,6 @@ class Parent < ApplicationRecord
     has_many :children
     has_many :bookings
     has_many :babysitters, through: :bookings
-    #has_many :childrens_appointments, through: :children, source: :appointments
     accepts_nested_attributes_for :children, reject_if: :nameless_child?
 
     validates :first_name, :last_name, :email, :password, presence: true
