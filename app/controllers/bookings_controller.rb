@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
     end
 
     def create
-       #binding.pry
+       binding.pry
         @booking = Booking.new(booking_params)
         if @booking.save
             redirect_to parent_booking_path(current_user, @booking)
@@ -20,6 +20,6 @@ class BookingsController < ApplicationController
 
     private
     def booking_params
-        params.require(:booking).permit(:start_time, :end_time, :parent_id, :babysitter_id, children_ids: [])
+        params.require(:booking).permit(:start_time, :end_time, :parent_id, :babysitter_id, children_ids: []) ###sortchild ids
     end
 end

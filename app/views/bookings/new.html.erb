@@ -2,7 +2,7 @@
 <%= form_for @booking do |f| %>
     <%= f.hidden_field :parent_id %>
     <%= f.label :child_ids, "For..." %>
-    <%= f.collection_check_boxes :child_ids, current_user.children, :id, :name, checked: false %>
+    <%= f.collection_check_boxes :children_ids, current_user.children, :id, :name, checked: false %>
     <br><br>
 
     <%= f.label :start_time, "From..."%>

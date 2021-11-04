@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :children
   resources :parents do 
     resources :bookings, only: [:index, :show, :new]
+    resources :children, only: [:index, :show, :new]
   end 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
