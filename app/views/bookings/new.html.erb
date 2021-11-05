@@ -1,10 +1,6 @@
 <h1>Create a new Babysitter Booking</h1>
 <%= form_for @booking do |f| %>
-    <%= f.hidden_field :parent_id %>
-    <%= f.label :child_ids, "For..." %>
-    <%= f.collection_check_boxes :children_ids, current_user.children, :id, :name, checked: false %>
-    <br><br>
-
+    <%= f.hidden_field :child_id %>
     <%= f.label :start_time, "From..."%>
     <%= f.datetime_field :start_time %>
     <%= f.label :end_time, "Until..." %>

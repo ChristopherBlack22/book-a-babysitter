@@ -1,11 +1,10 @@
 require "pry"
 class BookingsController < ApplicationController
     def new
-        @booking = Booking.new(parent_id: params[:parent_id])
+        @booking = Booking.new(child_id: params[:child_id])
     end
 
     def create
-       binding.pry
         @booking = Booking.new(booking_params)
         if @booking.save
             redirect_to parent_booking_path(current_user, @booking)

@@ -2,7 +2,7 @@ class Booking < ApplicationRecord
     belongs_to :child
     belongs_to :babysitter
    
-    validates :child, :babysitter, :start_time, :end_time, presence: true
+    validates :child, :babysitter, :start_time, :end_time, presence: true 
     validate :start_must_come_before_end
 
     def formatted_start_time

@@ -2,6 +2,7 @@
 
 <h1><%= @child.name %> - <%= pluralize(@child.age, "year") %> old</h1>
 <p><%= link_to "Edit", edit_child_path(@child) %></p>
+<p>Create new <%= link_to "Booking", new_child_booking_path(@child) %>.</p>
 
 <h3>Upcoming Bookings</h3>
 

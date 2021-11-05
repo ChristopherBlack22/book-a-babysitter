@@ -2,14 +2,12 @@ require "pry"
 class ChildrenController < ApplicationController
 
     def new
-        @child = Child.new
+        @child = Child.new(parent_id: params[:parent_id])
     end 
 
     def create
-        binding.pry
         @child = Child.new(child_params)
         if @child.save
-
             redirect_to parent_path(@child.parent)
         else
             render :new
