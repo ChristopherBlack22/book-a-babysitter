@@ -3,7 +3,7 @@ class Child < ApplicationRecord
     has_many :bookings#, through: :parent
     has_many :babysitters, through: :bookings
 
-    validates :name, :age, presence: true
+    validates :name, :date_of_birth, presence: true
 
     def current_bookings
         bookings.select do |booking|
