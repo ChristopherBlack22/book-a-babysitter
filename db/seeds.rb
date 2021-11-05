@@ -9,9 +9,9 @@
 Parent.create(first_name: "Test", last_name: "McTesterson", email: "test@test.com", password: "test")
 # Parent.create(first_name: "Bruce", last_name: "Bloke", email: "bruce@test.com", password: "test")
 
-Child.create(name: "Steve", age: 05/06/2016, parent_id: 1) 
-Child.create(name: "Sue", age: 12/09/2010, parent_id: 1)
-Child.create(name: "Tim", age: 15/01/2018, parent_id: )
+Child.create(name: "Steve", age: Time.new(2016,6,5), parent_id: 1) 
+Child.create(name: "Sue", age: Time.new(2010,9,12), parent_id: 1)
+Child.create(name: "Tim", age: Time.new(2018,1,15), parent_id: )
 # Child.create(name: "Jim", age: 5, parent_id: 3)
 # Child.create(name: "Harold",age: 4, parent_id: 3)
 # Child.create(name: "Debbie",age: 6, parent_id: 3)
