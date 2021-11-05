@@ -5,9 +5,9 @@
 <ul>
     <% current_user.children.each do |child| %>
         <li>
-            <%= link_to child.name, parent_child_path(current_user, child) %>: <%= pluralize(child.age, "year") %> old
+            <%= child.name %>: <%= pluralize(child.age, "year") %> old
             <br>
-            <%= pluralize(child.bookings.count, "Booking") %>
+            <%= link_to pluralize(child.bookings.count, "Booking"), child_bookings_path(child) %>
             <br>
         </li>
     <% end %>

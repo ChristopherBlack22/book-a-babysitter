@@ -1,5 +1,15 @@
 require "pry"
 class BookingsController < ApplicationController
+
+    def index
+        if params[:child_id]
+            @child = Child.find(params[:child_id])
+            @bookings = @child.bookings
+        else
+            @bookings = Booking.all
+        end 
+    end 
+
     def new
         @booking = Booking.new(child_id: params[:child_id])
     end
@@ -33,6 +43,6 @@ class BookingsController < ApplicationController
 
     private
     def booking_params
-        params.require(:booking).permit(:start_time, :end_time, :child_id, :babysitter_id, :rating) ###sortchild ids
+        params.require(:booking).permit(:start_time, :end_time, :child_id, :babysitter_id, :rating)
     end
 end
