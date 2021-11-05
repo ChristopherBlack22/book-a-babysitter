@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <% if logged_in? %>
+      <h2>--- <u>Book A Babysitter</u> ---</h2>
+    <% else %>
+      <h1>--- <u>Book A Babysitter</u> ---</h1>
+    <% end %>
     <%= yield %>
     <% if logged_in? %>
       <h3>

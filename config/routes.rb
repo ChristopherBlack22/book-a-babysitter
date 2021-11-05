@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   resources :babysitters
   resources :bookings
-  resources :children
+  resources :children do
+    resources :bookings
+  end
   resources :parents do 
     resources :bookings, only: [:index, :show, :new]
     resources :children, only: [:index, :show, :new]

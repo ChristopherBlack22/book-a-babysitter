@@ -17,6 +17,10 @@ class ParentsController < ApplicationController
         else
             render :new
         end 
+    end
+    
+    def show
+        @parent = Parent.find(params[:id])
     end 
 
     private

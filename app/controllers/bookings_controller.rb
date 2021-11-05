@@ -18,8 +18,22 @@ class BookingsController < ApplicationController
         @booking = Booking.find(params[:id])
     end
 
+    def edit
+        @booking = Booking.find(params[:id])
+    end
+
+    def update
+        @booking = Booking.find(params[:id])
+        @booking.assign_attributes(booking_params)
+        if @booking.save
+            redirect_to child_path(@booking.child)
+        else
+            render :edit
+        end
+    end
+
     private
     def booking_params
-        params.require(:booking).permit(:start_time, :end_time, :parent_id, :babysitter_id, children_ids: []) ###sortchild ids
+        params.require(:booking).permit(:start_time, :end_time, :child_id, :babysitter_id, :rating) ###sortchild ids
     end
 end

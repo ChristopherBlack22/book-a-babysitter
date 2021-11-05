@@ -1,0 +1,41 @@
+<% if @booking.has_finished? %>
+    <h1>Rate <%= @booking.child.name %>'s Babysitter for this Booking</h1>
+    <h3><%= @booking.babysitter.name_and_address %></h3>
+    <p><%= @booking.formatted_start_time %> to <%= @booking.formatted_end_time %></p>      
+    <%= form_for @booking do |f| %>
+        <%= f.label :rating %>
+        <%= f.number_field :rating, min: 0, max: 5 %>
+        <br><br>
+        <%= f.submit "Rate Babysitter"%>
+    <% end %>
+
+<% else %>    
+
+    <h1>Edit Details of <%= @booking.child.name %>'s Booking</h1>
+    <%= form_for @booking do |f| %>
+        <%= f.label :start_time, "From..."%>
+        <%= f.datetime_field :start_time %>
+        <%= f.label :end_time, "Until..." %>
+        <%= f.datetime_field :end_time %>
+        <br><br>
+        <%= f.label :babysitter_id, "With..." %>
+        <%= f.collection_select :babysitter_id, Babysitter.all, :id, :name_and_address %>
+        <br><br>
+        <%= f.submit %>
+    <% end %>
+
+<% end %>
+
+<% if @booking.errors.any? %>
+    <h2>
+        <%= pluralize(@booking.errors.count, "error") %>
+        stopped this from being saved:
+    </h2>
+    <ul>
+        <% @booking.errors.full_messages.each do |message| %>
+            <li>
+                <%= message %>
+            </li>
+        <% end %>
+    </ul>
+<% end %>
