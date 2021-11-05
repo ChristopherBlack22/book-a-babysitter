@@ -11,7 +11,7 @@ Parent.create(first_name: "Test", last_name: "McTesterson", email: "test@test.co
 
 Child.create(name: "Steve", age: Time.new(2016,6,5), parent_id: 1) 
 Child.create(name: "Sue", age: Time.new(2010,9,12), parent_id: 1)
-Child.create(name: "Tim", age: Time.new(2018,1,15), parent_id: )
+Child.create(name: "Tim", age: Time.new(2018,1,15), parent_id: 1)
 # Child.create(name: "Jim", age: 5, parent_id: 3)
 # Child.create(name: "Harold",age: 4, parent_id: 3)
 # Child.create(name: "Debbie",age: 6, parent_id: 3)
