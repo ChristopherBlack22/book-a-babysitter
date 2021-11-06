@@ -9,7 +9,7 @@
         <%= f.submit "Rate Babysitter"%>
     <% end %>
 
-<% else %>    
+<% else %> 
 
     <h1>Edit Details of <%= @booking.child.name %>'s Booking</h1>
     <%= form_for @booking do |f| %>
@@ -23,7 +23,10 @@
         <br><br>
         <%= f.submit %>
     <% end %>
-
+    <br>
+    <%= form_for @booking, method: "delete" do |f| %>
+        <%= f.submit "Remove Booking" %>
+    <% end %>
 <% end %>
 
 <% if @booking.errors.any? %>

@@ -4,7 +4,7 @@ class Booking < ApplicationRecord
    
     validates :child, :babysitter, :start_time, :end_time, presence: true 
     validate :start_must_be_before_end
-    validate :maximum_ten_hours
+    validate :maximum_10_hours
 
     def formatted_start_time
         start_time.strftime("%b %e, %l:%M %p")
@@ -16,7 +16,7 @@ class Booking < ApplicationRecord
 
     def has_finished?
         end_time < DateTime.now
-    end
+    end 
 
     private
     def start_must_be_before_end
@@ -25,9 +25,9 @@ class Booking < ApplicationRecord
         end 
     end 
 
-    def maximum_ten_hours
+    def maximum_10_hours
         if end_time > start_time+10.hours
-            errors.add(:maximum_ten_hours, "- Bookings is longer than 10 hours")
+            errors.add(:maximum_10_hours, "- Bookings is longer than 10 hours")
         end
     end 
 end

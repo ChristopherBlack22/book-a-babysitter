@@ -1,7 +1,5 @@
-<h1>Hi <%= current_user.full_name %></h1>
-
-
-<h3>Manage your family and their Babysitter Bookings</h3>
+<h1>Parent: <%= current_user.full_name %></h1>
+<h3>Manage your families Babysitter Bookings</h3>
 <ul>
     <% current_user.children.each do |child| %>
         <li>
@@ -12,4 +10,5 @@
         </li>
     <% end %>
 </ul>
-<p><%= link_to "Add another Child to your family", new_parent_child_path(current_user) %>
+<p>&emsp;&emsp;<%= link_to "Add another Child ", new_parent_child_path(current_user) %></p>
+<br>

@@ -1,0 +1,11 @@
+<h1>Babysitters Stats</h1>
+
+<h3>Highest Rated</h3>
+<ol>
+    <% @babysitters_by_rating.each do |babysitter| %>
+        <li>
+            <h4><%= babysitter.name %> - <%= babysitter.rating %>/5</h4>
+            <small>From <%= pluralize(babysitter.rated_bookings.count, "rated Booking") %> out of <%= pluralize(babysitter.bookings.count, "total Booking") %></small>
+        </li>
+    <% end %>
+</ol>

@@ -1,5 +1,6 @@
 require "pry"
 class ChildrenController < ApplicationController
+    before_action :redirect_if_not_logged_in
 
     def new
         @child = Child.new(parent_id: params[:parent_id])
@@ -20,6 +21,6 @@ class ChildrenController < ApplicationController
 
     private 
     def child_params
-        params.require(:child).permit(:name, :age, :parent_id)
+        params.require(:child).permit(:name, :date_of_birth, :parent_id)
     end
 end

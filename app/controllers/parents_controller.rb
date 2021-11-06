@@ -1,4 +1,6 @@
 class ParentsController < ApplicationController
+    before_action :redirect_if_not_logged_in
+    skip_before_action :redirect_if_not_logged_in, only: [:new, :create]
 
     def new
         @parent = Parent.new
@@ -25,6 +27,6 @@ class ParentsController < ApplicationController
 
     private
     def parent_params
-        params.require(:parent).permit(:first_name, :last_name, :email, :password, children_attributes: [:name, :age])
+        params.require(:parent).permit(:first_name, :last_name, :email, :password, children_attributes: [:name, :date_of_birth])
     end 
 end

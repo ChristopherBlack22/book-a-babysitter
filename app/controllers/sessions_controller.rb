@@ -1,3 +1,4 @@
+require "pry"
 class SessionsController < ApplicationController
 
     def new
@@ -13,6 +14,16 @@ class SessionsController < ApplicationController
         else
             render :new
         end 
+    end 
+
+    def omniauth
+        @parent = Parent.from_omniauth(request.env['omniauth.auth'])
+        if @parent.valid?
+            session[:user_id] = @parent.id
+            redirect_to parent_path(@parent)
+        else
+            redirect_to login_path
+        end
     end 
 
     def destroy

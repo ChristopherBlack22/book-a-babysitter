@@ -12,16 +12,20 @@
 
   <body>
     <% if logged_in? %>
-      <h2>--- <u>Book A Babysitter</u> ---</h2>
+      <h2>--- <u>Book-A-Babysitter</u> ---</h2>
     <% else %>
-      <h1>--- <u>Book A Babysitter</u> ---</h1>
+      <h1>--- <u>Book-A-Babysitter</u> ---</h1>
+      <h3>&emsp;&emsp;&emsp;&emsp;<%= link_to "Sign Up", new_parent_path %> | <%= link_to "Log In", login_path %></h3>
+      <%= button_to "Log in with Google", '/auth/google_oauth2'  %>
+    <br>
     <% end %>
     <%= yield %>
     <% if logged_in? %>
-      <h3>
-        <%= link_to "Profile", parent_path(current_user) %> | 
-        <%= link_to "Log Out", logout_path, method: "delete" %>
-      </h3>
+      <h4>
+        <%= link_to "Your Profile", parent_path(current_user) %> | 
+        <%= link_to "Log Out", logout_path, method: "delete" %> |
+        <%= link_to "Babysitter Stats", babysitters_stats_path %>
+      </h4>
     <% end %>
   </body>
 </html>

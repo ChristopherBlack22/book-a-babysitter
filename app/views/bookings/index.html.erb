@@ -1,0 +1,33 @@
+<h3> Parent: <%= current_user.full_name %></h3>
+
+<h1><%= @child.name %> - <%= pluralize(@child.age, "year") %> old</h1>
+
+<p>Create new <%= link_to "Booking", new_child_booking_path(@child) %>.</p>
+
+
+
+<h3>Upcoming Bookings</h3>
+<% @bookings.each do |booking| %>
+    <% if !booking.has_finished? %>
+        <strong><%= booking.formatted_start_time %> - <%= booking.formatted_end_time %></strong>
+        <small><%= link_to "Edit Booking", edit_child_booking_path(@child, booking) %></small>
+        <br> 
+        <%= booking.babysitter.name_and_address %>
+        <br><br>
+    <% end %>
+<% end %>
+
+<h3>Previous Bookings</h3>
+<% @bookings.each do |booking| %>
+    <% if booking.has_finished? %> 
+        <strong><%= booking.formatted_start_time %> - <%= booking.formatted_end_time %></strong>
+        <% if booking.rating.nil? %>
+            <small><%= link_to "Rate Booking", edit_child_booking_path(@child, booking) %></small>
+        <% else %>
+            - Rated <%= booking.rating %>/5
+        <% end %>    
+        <br> 
+        <%= booking.babysitter.name_and_address %>
+        <br><br>
+    <% end %>
+<% end %>

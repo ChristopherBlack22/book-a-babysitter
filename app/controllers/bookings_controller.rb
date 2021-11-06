@@ -1,10 +1,12 @@
 require "pry"
 class BookingsController < ApplicationController
+    before_action :redirect_if_not_logged_in
 
     def index
         if params[:child_id]
             @child = Child.find(params[:child_id])
-            @bookings = @child.bookings
+            bookings = @child.bookings
+            @bookings = bookings.sort{|a,b| a.start_time <=> b.start_time}
         else
             @bookings = Booking.all
         end 
@@ -40,6 +42,12 @@ class BookingsController < ApplicationController
             render :edit
         end
     end
+
+    def destroy
+        @booking = Booking.find_by(id: params[:id])
+        @booking.delete
+        redirect_to child_path(@booking.child)
+    end 
 
     private
     def booking_params

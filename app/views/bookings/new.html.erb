@@ -1,4 +1,4 @@
-<h1>Create a new Babysitter Booking</h1>
+<h1>Create a new Booking for <%=@booking.child.name %></h1>
 <%= form_for @booking do |f| %>
     <%= f.hidden_field :child_id %>
     <%= f.label :start_time, "From..."%>
@@ -6,12 +6,16 @@
     <%= f.label :end_time, "Until..." %>
     <%= f.datetime_field :end_time %>
     <br><br>
-
     <%= f.label :babysitter_id, "With..." %>
     <%= f.collection_select :babysitter_id, Babysitter.all, :id, :name_and_address %>
     <br><br>
     <%= f.submit %>
 <% end %>
+<br>
+<h3>Can't find your Babysitter's details?</h3>
+<%= link_to "Create a new Babysitter", new_babysitter_path %>
+
+
 
 <% if @booking.errors.any? %>
     <h2>

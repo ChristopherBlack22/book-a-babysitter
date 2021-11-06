@@ -1,7 +1,5 @@
-<h1>Create a new Parent Profile</h1>
+<h2>Enter Your Details To Create An Account</h2>
 <%= form_for @parent do |f| %>
-    Please add your details...
-    <br><br>
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>
     <%= f.label :last_name %>
@@ -11,17 +9,15 @@
     <%= f.email_field :email %>
     <%= f.label :password %>
     <%= f.password_field :password %>
-    <br><br>
-    And add the details of at least one child in your care...
-    <br><br>
+    <br>
+    <h3>And add the details of at least one Child who is in your care...</h3>
     <%= f.fields_for :children do |child| %>
         <%= child.label :name %>
         <%= child.text_field :name %>
-        <%= child.label :age %>
-        <%= child.number_field :age, min: 0 %>
+        <%= child.label :date_of_birth %>
+        <%= child.date_field :date_of_birth %>
         <br><br>
     <% end %>
-    <br>
     <%= f.submit "Create Profile" %>
 <% end %>
 
