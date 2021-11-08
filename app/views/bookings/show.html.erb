@@ -1,7 +1,7 @@
-Bookings show page
-<br>
-<%= @booking.start_time %><br>
-<%= @booking.end_time %><br>
-<%= @booking.child.name %><br>
-<%= @booking.babysitter.name %><br>
+<h2>Booking Confirmed!</h2>
+<h3><%= @booking.child.name %> is booked with <%= @booking.babysitter.name %></h3>
+
+<strong><%= @booking.formatted_start_time %></strong> to <strong><%= @booking.formatted_end_time %></strong>
+<br><br>
+<%= link_to "Edit Booking", edit_child_booking_path(@booking.child, @booking) %>
 

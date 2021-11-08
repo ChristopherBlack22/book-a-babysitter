@@ -1,25 +1,23 @@
-<h3> Parent: <%= current_user.full_name %></h3>
-
-<h1><%= @child.name %> - <%= pluralize(@child.age, "year") %> old</h1>
-
-<p>Create new <%= link_to "Booking", new_child_booking_path(@child) %>.</p>
-
-
-
-<h3>Upcoming Bookings</h3>
-<% @bookings.each do |booking| %>
-    <% if !booking.has_finished? %>
+<h1><%= @child.name %>'s Bookings</h1>
+<h4><%= link_to "Create New", new_child_booking_path(@child) %></h4>
+<h3>Upcoming</h3>
+<% if @upcoming_bookings.empty? %>
+<em>No Bookings</em>
+<% else %>
+    <% @upcoming_bookings.each do |booking| %>
         <strong><%= booking.formatted_start_time %> - <%= booking.formatted_end_time %></strong>
         <small><%= link_to "Edit Booking", edit_child_booking_path(@child, booking) %></small>
         <br> 
         <%= booking.babysitter.name_and_address %>
         <br><br>
-    <% end %>
+    <% end %>    
 <% end %>
 
-<h3>Previous Bookings</h3>
-<% @bookings.each do |booking| %>
-    <% if booking.has_finished? %> 
+<h3>Previous</h3>
+<% if @previous_bookings.empty? %>
+<em>No Bookings</em>
+<% else %>
+    <% @previous_bookings.each do |booking| %>
         <strong><%= booking.formatted_start_time %> - <%= booking.formatted_end_time %></strong>
         <% if booking.rating.nil? %>
             <small><%= link_to "Rate Booking", edit_child_booking_path(@child, booking) %></small>

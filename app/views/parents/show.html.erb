@@ -1,14 +1,20 @@
-<h1>Parent: <%= current_user.full_name %></h1>
-<h3>Manage your families Babysitter Bookings</h3>
-<ul>
-    <% current_user.children.each do |child| %>
-        <li>
-            <%= child.name %>: <%= pluralize(child.age, "year") %> old
-            <br>
-            <%= link_to pluralize(child.bookings.count, "Booking"), child_bookings_path(child) %>
-            <br>
-        </li>
-    <% end %>
-</ul>
-<p>&emsp;&emsp;<%= link_to "Add another Child ", new_parent_child_path(current_user) %></p>
+<h1><%= current_user.full_name %> <small>(Parent)</small></h1>
+<% if current_user.children.empty? %>
+    <h3>Please add to your family to start</h3>
+    <p><%= link_to "Add Children", new_parent_child_path(current_user) %></p>
+
+<% else %>
+    <h3>Manage your family's Babysitter Bookings</h3>
+    <ul>
+        <% current_user.children.each do |child| %>
+            <li>
+                <%= child.name %>: <%= pluralize(child.age, "year") %> old
+                <br>
+                <%= link_to pluralize(child.bookings.count, "Booking"), child_bookings_path(child) %>
+                <br>
+            </li>
+        <% end %>
+    </ul>
+    <p>&emsp;&emsp;<%= link_to "Add Children", new_parent_child_path(current_user) %></p>
+<% end %>
 <br>

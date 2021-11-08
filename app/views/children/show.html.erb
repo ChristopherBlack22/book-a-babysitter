@@ -1,30 +1,8 @@
-<h3> Parent: <%= @child.parent.full_name %></h3>
-
-<h1><%= @child.name %> - <%= pluralize(@child.age, "year") %> old</h1>
-
-<p>Create new <%= link_to "Booking", new_child_booking_path(@child) %>.</p>
-
-<h3>Upcoming Bookings</h3>
-
-<% @child.current_bookings.each do |booking| %>
-    <strong><%= booking.formatted_start_time %> - <%= booking.formatted_end_time %></strong>
-    <small><%= link_to "Edit Booking", edit_child_booking_path(@child, booking) %></small>
-    <br> 
-    <%= booking.babysitter.name_and_address %>
-    <br><br>
-<% end %>
-
-
-<h3>Previous Bookings</h3>
-
-<% @child.previous_bookings.each do |booking| %>
-    <strong><%= booking.formatted_start_time %> - <%= booking.formatted_end_time %></strong>
-    <% if booking.rating.nil? %>
-        <small><%= link_to "Rate Booking", edit_child_booking_path(@child, booking) %></small>
-    <% else %>
-        - Rated <%= booking.rating %>/5
-    <% end %>    
-    <br> 
-    <%= booking.babysitter.name_and_address %>
-    <br><br>
+<h1><%= @child.name %></h1>
+<p>Parent: <%= @child.parent.full_name %></p>
+<p>Age: <%= pluralize(@child.age, "year") %> old</p>
+<p><%= link_to "View Bookings", child_bookings_path(@child)%></p>
+<p><%= link_to "New Booking", new_child_booking_path(@child) %></p>
+<%= form_for @child, method: "delete" do |f| %>
+    <%= f.submit "Remove from Family" %>
 <% end %>

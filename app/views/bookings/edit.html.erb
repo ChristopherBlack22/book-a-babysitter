@@ -12,6 +12,7 @@
 <% else %> 
 
     <h1>Edit Details of <%= @booking.child.name %>'s Booking</h1>
+    <%= render partial: "layouts/errors", locals: {instance: @booking} %>
     <%= form_for @booking do |f| %>
         <%= f.label :start_time, "From..."%>
         <%= f.datetime_field :start_time %>
@@ -27,18 +28,4 @@
     <%= form_for @booking, method: "delete" do |f| %>
         <%= f.submit "Remove Booking" %>
     <% end %>
-<% end %>
-
-<% if @booking.errors.any? %>
-    <h2>
-        <%= pluralize(@booking.errors.count, "error") %>
-        stopped this from being saved:
-    </h2>
-    <ul>
-        <% @booking.errors.full_messages.each do |message| %>
-            <li>
-                <%= message %>
-            </li>
-        <% end %>
-    </ul>
 <% end %>

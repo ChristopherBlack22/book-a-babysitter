@@ -1,4 +1,5 @@
-<h1>Create a new Booking for <%=@booking.child.name %></h1>
+<h2>New Booking for <%=@booking.child.name %></h2>
+<%= render partial: "layouts/errors", locals: {instance: @booking} %>
 <%= form_for @booking do |f| %>
     <%= f.hidden_field :child_id %>
     <%= f.label :start_time, "From..."%>
@@ -13,20 +14,5 @@
 <% end %>
 <br>
 <h3>Can't find your Babysitter's details?</h3>
-<%= link_to "Create a new Babysitter", new_babysitter_path %>
+<h4><%= link_to "Create a new Babysitter", new_babysitter_path %></h4>
 
-
-
-<% if @booking.errors.any? %>
-    <h2>
-        <%= pluralize(@booking.errors.count, "error") %>
-        stopped this from being saved:
-    </h2>
-    <ul>
-        <% @booking.errors.full_messages.each do |message| %>
-            <li>
-                <%= message %>
-            </li>
-        <% end %>
-    </ul>
-<% end %>

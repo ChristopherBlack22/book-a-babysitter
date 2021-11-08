@@ -1,3 +1,5 @@
+<h2>Add a Child to your family</h2>
+<%= render partial: "layouts/errors", locals: {instance: @child} %>
 <%= form_for @child do |f| %>
     <%= f.hidden_field :parent_id %>
     <%= f.label :name %>
@@ -6,18 +8,4 @@
     <%= f.date_field :date_of_birth %>
     <br><br>
     <%= f.submit %>
-<% end %>
-
-<% if @child.errors.any? %>
-    <h2>
-        <%= pluralize(@child.errors.count, "error") %>
-        stopped this from being saved:
-    </h2>
-    <ul>
-        <% @child.errors.full_messages.each do |message| %>
-            <li>
-                <%= message %>
-            </li>
-        <% end %>
-    </ul>
 <% end %>

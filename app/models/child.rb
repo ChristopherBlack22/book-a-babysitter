@@ -1,6 +1,6 @@
 class Child < ApplicationRecord
     belongs_to :parent
-    has_many :bookings#, through: :parent
+    has_many :bookings
     has_many :babysitters, through: :bookings
 
     validates :name, :date_of_birth, presence: true
@@ -28,8 +28,10 @@ class Child < ApplicationRecord
 
     private
     def cannot_be_over_16
-        if age > 16
-            errors.add(:cannot_be_over_16, "- Only Children 16 and under allowed")
+        if date_of_birth
+            if age > 16
+                errors.add(:cannot_be_over_16, "- Only Children 16 and under allowed")
+            end 
         end 
     end
 end

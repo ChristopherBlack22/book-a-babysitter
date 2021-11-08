@@ -20,14 +20,18 @@ class Booking < ApplicationRecord
 
     private
     def start_must_be_before_end
-        if start_time >= end_time
-            errors.add(:start_must_be_before_end, "- Booking cannot End before it Starts")
-        end 
+        if start_time && end_time
+            if start_time >= end_time
+                errors.add(:start_must_be_before_end, "- Booking cannot End before it Starts")
+            end 
+        end
     end 
 
     def maximum_10_hours
-        if end_time > start_time+10.hours
-            errors.add(:maximum_10_hours, "- Bookings is longer than 10 hours")
-        end
+        if start_time && end_time
+            if end_time > start_time+10.hours
+                errors.add(:maximum_10_hours, "- Bookings is longer than 10 hours")
+            end
+        end 
     end 
 end

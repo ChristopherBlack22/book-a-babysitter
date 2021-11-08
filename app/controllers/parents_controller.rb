@@ -2,10 +2,11 @@ class ParentsController < ApplicationController
     before_action :redirect_if_not_logged_in
     skip_before_action :redirect_if_not_logged_in, only: [:new, :create]
 
+    # def index
+    # end
+
     def new
         @parent = Parent.new
-        @parent.children.build#(name: "Child 1")
-        @parent.children.build
         @parent.children.build
         @parent.children.build
         @parent.children.build

@@ -9,6 +9,7 @@ class BabysittersController < ApplicationController
         @babysitter = Babysitter.new(babysitter_params)
         if @babysitter.save
             redirect_to parent_path(current_user)
+            #redirect_to the previous children/:id/bookings/new page
         else
             render :new
         end 

@@ -1,0 +1,15 @@
+<h1><%= current_user.full_name %>'s Family</h1>
+<% if current_user.children.empty? %>
+    <h3>Please add to your family to start</h3>
+<% else %>
+    <ul>
+        <% current_user.children.each do |child| %>
+            <li>
+                <%= link_to child.name, child_path(child)%>
+            </li>
+        <% end %>
+    </ul>
+    <em><p>Select a Child to view, make, and edit Bookings</p></em>
+<% end %>
+<p><%= link_to "Add Children", new_parent_child_path(current_user) %></p>
+<br>

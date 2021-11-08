@@ -1,0 +1,15 @@
+<em><% if instance.errors.any? %>
+    <h3>
+        <%= pluralize(instance.errors.count, "error") %>
+        stopped this from being saved:
+    </h3>
+    <ul>
+        <% instance.errors.full_messages.each do |message| %>
+            <li>
+                <%= message %>
+            </li>
+        <% end %>
+    </ul>
+<% end %></em>
+<br>
+
