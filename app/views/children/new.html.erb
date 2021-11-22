@@ -1,11 +1,8 @@
-<h2>Add a Child to your family</h2>
+<h2>Add a Child to your Family</h2>
 <%= render partial: "layouts/errors", locals: {instance: @child} %>
 <%= form_for @child do |f| %>
     <%= f.hidden_field :parent_id %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :date_of_birth %>
-    <%= f.date_field :date_of_birth %>
+    <%= render partial: "form", locals: {f: f} %>
     <br><br>
     <%= f.submit %>
 <% end %>

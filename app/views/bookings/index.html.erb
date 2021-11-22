@@ -1,6 +1,5 @@
-<h1><%= @child.name %>'s Bookings</h1>
-<h4><%= link_to "Create New", new_child_booking_path(@child) %></h4>
-<h3>Upcoming</h3>
+<h1><%= @child.name %>'s Babysitter Bookings</h1>
+<h3>Upcoming<small> - <%= link_to "Add a New Booking", new_child_booking_path(@child) %></small></h3>
 <% if @upcoming_bookings.empty? %>
 <em>No Bookings</em>
 <% else %>
@@ -17,7 +16,7 @@
 <% if @previous_bookings.empty? %>
 <em>No Bookings</em>
 <% else %>
-    <% @previous_bookings.each do |booking| %>
+    <% @previous_bookings.reverse.each do |booking| %>
         <strong><%= booking.formatted_start_time %> - <%= booking.formatted_end_time %></strong>
         <% if booking.rating.nil? %>
             <small><%= link_to "Rate Booking", edit_child_booking_path(@child, booking) %></small>

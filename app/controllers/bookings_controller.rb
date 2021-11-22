@@ -1,4 +1,3 @@
-require "pry"
 class BookingsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
@@ -15,12 +14,13 @@ class BookingsController < ApplicationController
 
     def new
         @booking = Booking.new(child_id: params[:child_id])
+        session[:child_for_booking_id] = params[:child_id]
     end
 
     def create
         @booking = Booking.new(booking_params)
         if @booking.save
-            redirect_to parent_booking_path(current_user, @booking)
+            redirect_to child_booking_path(@booking.child, @booking)
         else
             render :new
         end 
@@ -38,7 +38,12 @@ class BookingsController < ApplicationController
         @booking = Booking.find(params[:id])
         @booking.assign_attributes(booking_params)
         if @booking.save
-            redirect_to child_path(@booking.child)
+            if @booking.rating
+                flash[:alert] = "Rating added to Babysitter Stats"
+                redirect_to child_bookings_path(@booking.child)
+            else
+                redirect_to child_booking_path(@booking.child, @booking)
+            end
         else
             render :edit
         end
@@ -46,8 +51,10 @@ class BookingsController < ApplicationController
 
     def destroy
         @booking = Booking.find_by(id: params[:id])
+        child = @booking.child
+        flash[:alert] = "Booking has been cancelled"
         @booking.delete
-        redirect_to child_path(@booking.child)
+        redirect_to child_bookings_path(child)
     end 
 
     private

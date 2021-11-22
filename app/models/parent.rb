@@ -6,7 +6,7 @@ class Parent < ApplicationRecord
     accepts_nested_attributes_for :children, reject_if: :nameless_child?
 
     validates :first_name, :last_name, :email, :password, presence: true
-    validates :email, uniqueness: true#, message: "A Profile already exists for this email address. Please Log In."
+    validates :email, uniqueness: {message: "- A Profile already exists for this email address. Log in or Sign up with a different address."}
 
     def self.from_omniauth(response)
         self.find_or_create_by(uid: response[:uid], provider: response[:provider]) do |p|
@@ -16,7 +16,6 @@ class Parent < ApplicationRecord
             p.password = SecureRandom.hex(15)
         end 
     end 
-
 
     def full_name
         "#{first_name} #{last_name}"

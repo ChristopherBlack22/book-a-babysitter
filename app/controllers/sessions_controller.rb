@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 
     def new
+        if logged_in?
+            redirect_to parent_children_path(current_user)
+        end        
     end
 
     def create
@@ -9,17 +12,18 @@ class SessionsController < ApplicationController
             session[:user_id] = @parent.id
             redirect_to parent_children_path(@parent)
         else
+            flash[:alert] = "Log in failed"
             render :new
         end 
     end 
 
     def omniauth
-        @parent = Parent.from_omniauth(request.env['omniauth.auth'])
-        if @parent.valid?
+        if @parent = Parent.from_omniauth(request.env['omniauth.auth'])
             session[:user_id] = @parent.id
-            redirect_to parent_path(@parent)
+            redirect_to parent_children_path(@parent)
         else
-            redirect_to login_path
+            flash[:alert] = "Log in with Google failed"
+            redirect_to root_path
         end
     end 
 

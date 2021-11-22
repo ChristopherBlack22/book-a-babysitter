@@ -3,5 +3,6 @@
 
 <strong><%= @booking.formatted_start_time %></strong> to <strong><%= @booking.formatted_end_time %></strong>
 <br><br>
-<%= link_to "Edit Booking", edit_child_booking_path(@booking.child, @booking) %>
-
+<%= link_to "Edit/Cancel Booking", edit_child_booking_path(@booking.child, @booking) %>
+<br><br><br>
+<%= link_to "Back to #{@booking.child.name}'s Bookings", child_bookings_path(@booking.child) %>

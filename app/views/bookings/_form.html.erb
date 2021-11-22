@@ -1,0 +1,12 @@
+    <%= form_for @booking do |f| %>
+        <%= f.hidden_field :child_id %>
+        <%= f.label :start_time, "From..."%>
+        <%= f.datetime_field :start_time %>
+        <%= f.label :end_time, "Until..." %>
+        <%= f.datetime_field :end_time %>
+        <br><br>
+        <%= f.label :babysitter_id, "With..." %>
+        <%= f.collection_select :babysitter_id, Babysitter.all, :id, :name_and_address %>
+        <br><br>
+        <%= f.submit %>
+    <% end %>

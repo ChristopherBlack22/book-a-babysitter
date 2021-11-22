@@ -1,8 +1,10 @@
-<h1><%= @child.name %></h1>
+<h1><%= @child.name %> - <%= pluralize(@child.age, "year") %> old</h1>
 <p>Parent: <%= @child.parent.full_name %></p>
-<p>Age: <%= pluralize(@child.age, "year") %> old</p>
-<p><%= link_to "View Bookings", child_bookings_path(@child)%></p>
-<p><%= link_to "New Booking", new_child_booking_path(@child) %></p>
+<p><%= pluralize(@child.bookings.count, "Upcoming Booking")%> 
+<br><br>
+<p><%= link_to "View all Bookings", child_bookings_path(@child)%> for <%= @child.name %>, or make <%= link_to "New Booking", new_child_booking_path(@child) %></p>
+
+<br>
 <%= form_for @child, method: "delete" do |f| %>
     <%= f.submit "Remove from Family" %>
 <% end %>

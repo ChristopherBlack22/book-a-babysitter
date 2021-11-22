@@ -11,12 +11,9 @@
     <%= f.label :password %>
     <%= f.password_field :password %>
     <br><br>
-    <h3>You can add Children to your account now or later</h3>
+    <h3>You can add Children to your Family now or later</h3>
     <small><%= f.fields_for :children do |child| %>
-        <%= child.label :name %>
-        <%= child.text_field :name %>
-        <%= child.label :date_of_birth %>
-        <%= child.date_field :date_of_birth %>
+        <%= render partial: "children/form", locals: {f: child} %>
         <br><br>
     <% end %></small>
     <br>

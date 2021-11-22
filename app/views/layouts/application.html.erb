@@ -20,10 +20,14 @@
       </h4>
     <% else %>
       <h1>--- <u>Book-A-Babysitter</u> ---</h1>
-      <h3><%= link_to "Sign Up", new_parent_path %> | <%= link_to "Log In", login_path %></h3>
+      <h3><%= link_to "Sign Up", signup_path %> | <%= link_to "Log In", login_path %></h3>
       <%= button_to "Log in with Google", '/auth/google_oauth2'  %>
     <br>
     <% end %>
+    <% if flash[:alert] %>
+      <h3><em><%= flash[:alert] %></em></h3>
+    <% end %>
+    <br>
     <%= yield %>
   </body>
 </html>

@@ -11,21 +11,11 @@
 
 <% else %> 
 
-    <h1>Edit Details of <%= @booking.child.name %>'s Booking</h1>
+    <h1>Edit <%= @booking.child.name %>'s Booking</h1>
     <%= render partial: "layouts/errors", locals: {instance: @booking} %>
-    <%= form_for @booking do |f| %>
-        <%= f.label :start_time, "From..."%>
-        <%= f.datetime_field :start_time %>
-        <%= f.label :end_time, "Until..." %>
-        <%= f.datetime_field :end_time %>
-        <br><br>
-        <%= f.label :babysitter_id, "With..." %>
-        <%= f.collection_select :babysitter_id, Babysitter.all, :id, :name_and_address %>
-        <br><br>
-        <%= f.submit %>
-    <% end %>
+    <%= render "form" %>
     <br>
     <%= form_for @booking, method: "delete" do |f| %>
-        <%= f.submit "Remove Booking" %>
+        <%= f.submit "Cancel Booking" %>
     <% end %>
 <% end %>

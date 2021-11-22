@@ -8,8 +8,8 @@ class BabysittersController < ApplicationController
     def create
         @babysitter = Babysitter.new(babysitter_params)
         if @babysitter.save
-            redirect_to parent_path(current_user)
-            #redirect_to the previous children/:id/bookings/new page
+            flash[:alert] = "New Babysitter added to Booking options"
+            redirect_to new_child_booking_path(session[:child_for_booking_id])
         else
             render :new
         end 
@@ -18,7 +18,6 @@ class BabysittersController < ApplicationController
     def stats
         @babysitters_by_rating = Babysitter.sorted_by_rating
     end 
-
 
     private
     def babysitter_params
