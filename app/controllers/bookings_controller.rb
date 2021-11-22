@@ -4,9 +4,11 @@ class BookingsController < ApplicationController
     def index
         if params[:child_id]
             @child = Child.find(params[:child_id])
-            bookings = @child.bookings.sort{|a,b| a.start_time <=> b.start_time} 
-            @upcoming_bookings = bookings.select{|booking| !booking.has_finished?}
-            @previous_bookings = bookings.select{|booking| booking.has_finished?}
+            # bookings = @child.bookings.sort{|a,b| a.start_time <=> b.start_time} 
+            # @upcoming_bookings = bookings.select{|booking| !booking.has_finished?}
+            # @previous_bookings = bookings.select{|booking| booking.has_finished?}
+            @upcoming_bookings = Booking.childs_upcoming(@child)
+            @previous_bookings = Booking.childs_previous(@child)
         else
             @bookings = Booking.all
         end 

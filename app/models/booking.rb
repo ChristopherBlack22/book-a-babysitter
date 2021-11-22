@@ -6,6 +6,9 @@ class Booking < ApplicationRecord
     validate :start_must_be_before_end
     validate :maximum_10_hours
 
+    scope :childs_previous, -> (child) {where("child_id = ? and end_time < ?", child.id,  DateTime.now).order("start_time")} 
+    scope :childs_upcoming, -> (child) {where("child_id = ? and end_time > ?", child.id,  DateTime.now).order("start_time")} 
+
     def formatted_start_time
         start_time.strftime("%b %e, %l:%M %p")
     end 
@@ -14,9 +17,9 @@ class Booking < ApplicationRecord
         end_time.strftime("%l:%M %p")
     end 
 
-    def has_finished?
-        end_time < DateTime.now
-    end 
+    # def has_finished?
+    #     end_time < DateTime.now
+    # end 
 
     private
     def start_must_be_before_end

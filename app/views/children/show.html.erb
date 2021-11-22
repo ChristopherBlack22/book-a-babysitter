@@ -1,7 +1,7 @@
 <h1><%= @child.name %> - <%= pluralize(@child.age, "year") %> old</h1>
 <p>Parent: <%= @child.parent.full_name %></p>
-<p><%= pluralize(@child.bookings.count, "Upcoming Booking")%> 
-<br><br>
+<p>Has <%= pluralize(@child.bookings.count, "Booking")%> in total <em>(past and present)</em></p> 
+<br>
 <p><%= link_to "View all Bookings", child_bookings_path(@child)%> for <%= @child.name %>, or make <%= link_to "New Booking", new_child_booking_path(@child) %></p>
 
 <br>
