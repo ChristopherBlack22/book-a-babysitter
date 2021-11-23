@@ -6,17 +6,17 @@ class Child < ApplicationRecord
     validates :name, :date_of_birth, presence: true
     validate :cannot_be_over_16
 
-    def current_bookings
-        bookings.select do |booking|
-            booking.end_time > DateTime.now
-        end
-    end 
+    # def current_bookings
+    #     bookings.select do |booking|
+    #         booking.end_time > DateTime.now
+    #     end
+    # end 
 
-    def previous_bookings
-        bookings.select do |booking|
-            booking.end_time < DateTime.now 
-        end 
-    end 
+    # def previous_bookings
+    #     bookings.select do |booking|
+    #         booking.end_time < DateTime.now 
+    #     end 
+    # end 
 
     def age
         if Time.now.strftime("%m%d") >= date_of_birth.strftime("%m%d")
